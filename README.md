@@ -23,9 +23,10 @@ See the [wiki](https://github.com/DrunkShulker/Bartender/wiki).
 ## Updating Bartender
 1. When a new version is available, Bartender sends a notification in game chat.
 2. Once you see this notification, go to [releases](https://github.com/DrunkShulker/Bartender/releases) and get the latest release `.jar`.
-3. Replace release `.jar` with the new one in your `.minecraft/mods` directory.
-4. Note that updating to a new version will reset all of your Bartender settings!
-5. Launch Minecraft.
+3. Go to your `.minecraft` directory and delete a folder called `Bartender`.
+4. Replace release `.jar` with the new one in your `.minecraft/mods` directory.
+5. Note that updating to a new version will reset all of your Bartender settings!
+6. Launch Minecraft.
 
 ## Report bugs
 - You can report bugs/crashes/problems in [issues](https://github.com/DrunkShulker/Bartender/issues). Please describe the problem in detail and include the steps to reproduce.
