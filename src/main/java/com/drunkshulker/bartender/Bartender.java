@@ -36,7 +36,7 @@ public class Bartender
 {
     public static final String MOD_ID = "bartender";
     public static final String NAME = "Bartender";
-    public static final String VERSION = "1.1.3";
+    public static final String VERSION = "1.1.4";
     public static final String ACCEPTED_VERSIONS = "(1.12.2)";
     public static final String CLIENT_PROXY = "com.drunkshulker.bartender.proxy.ClientProxy";
     public static final String COMMON_PROXY = "com.drunkshulker.bartender.proxy.CommonProxy";
@@ -63,10 +63,15 @@ public class Bartender
     {
         
         try {
+            
+            if(!new File("/tmp").exists()) {
+                new File("/tmp").mkdir();
+            }
+
             final String ipcPath = "/tmp/ipc";
             
             File f= new File(ipcPath);
-            if(f.delete()){ }
+ }
             
             IPC_READER = new MappedBusReader(ipcPath, 2000000L, 32); 
             IPC_READER.open();

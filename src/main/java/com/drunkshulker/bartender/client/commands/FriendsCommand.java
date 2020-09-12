@@ -1,5 +1,6 @@
 package com.drunkshulker.bartender.client.commands;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.drunkshulker.bartender.client.social.PlayerFriends;
@@ -84,7 +85,7 @@ public class FriendsCommand implements ICommand {
 
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override

@@ -3,8 +3,8 @@ package com.drunkshulker.bartender.util.kami;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class ColourUtils {
 
+public class ColourUtils {
 
     private ArrayList<ColorName> initColorList() {
         ArrayList<ColorName> colorList = new ArrayList<ColorName>();
@@ -271,7 +271,7 @@ public class ColourUtils {
     }
 
     public static final int changeAlpha(int origColor, int userInputedAlpha) {
-        origColor = origColor & 0x00ffffff;
+        origColor = origColor & 0x00ffffff; 
         return (userInputedAlpha << 24) | origColor; 
     }
 

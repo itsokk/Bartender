@@ -817,6 +817,9 @@ public class Bodyguard {
 	}
 
 	public static String getStatusString() {
+		EntityPlayerSP player = Minecraft.getMinecraft().player;
+		if(player==null) return currentTask.toString();
+		else if(PlayerGroup.mainAccount!=null&&player.getDisplayNameString().equals(PlayerGroup.mainAccount)) return "YOU SHOULD NOT ENABLE BODYGUARD ON YOU MAIN ACC!";
 		return currentTask.toString();
 	}
 	

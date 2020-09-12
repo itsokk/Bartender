@@ -18,6 +18,8 @@ import net.minecraft.util.math.Vec3d;
 
 import java.util.ArrayList;
 
+
+
 public class EntityUtils {
     private static Minecraft mc = Minecraft.getMinecraft();
 
@@ -41,7 +43,7 @@ public class EntityUtils {
         return entity != null && entity.getEntityId() == -100 && Minecraft.getMinecraft().player != entity;
     }
 
-
+ 
     public static Vec3d getInterpolatedAmount(Entity entity, float ticks){
         return new Vec3d(
                 (entity.posX - entity.lastTickPosX) * ticks,
@@ -52,7 +54,7 @@ public class EntityUtils {
 
     public static boolean isMobAggressive(Entity entity) {
         if (entity instanceof EntityPigZombie) {
-
+            
             if (((EntityZombie) entity).isArmsRaised() || ((EntityPigZombie) entity).isAngry()) {
                 return true;
             }
@@ -67,7 +69,6 @@ public class EntityUtils {
         return isHostileMob(entity);
     }
 
-
     public static boolean isCurrentlyNeutral(Entity entity){
         return isNeutralMob(entity) && !isMobAggressive(entity);
     }
@@ -80,7 +81,7 @@ public class EntityUtils {
                 entity instanceof EntityIronGolem;
     }
 
- 
+
     public static boolean isFriendlyMob(Entity entity){
         return entity.isCreatureType(EnumCreatureType.CREATURE, false) && !isNeutralMob(entity) ||
                 entity.isCreatureType(EnumCreatureType.AMBIENT, false) ||
@@ -93,9 +94,11 @@ public class EntityUtils {
     }
 
 
+
     public static boolean isDrivenByPlayer(Entity entityIn) {
         return Minecraft.getMinecraft().player != null && entityIn != null && entityIn == Minecraft.getMinecraft().player.getRidingEntity();
     }
+
 
 
     public static double[] calculateLookAt(double px, double  py, double  pz, EntityPlayer me) {
@@ -159,69 +162,6 @@ public class EntityUtils {
     }
 
     float getSpeed(Entity entity) {
-        return (float) Math.sqrt(entity.motionX * entity.motionX + entity.motionZ * entity.motionZ);
-    }
-
-
-    public enum EntityPriority {
-        DISTANCE, HEALTH
-    }
-
-    public static Entity getPrioritizedTarget(ArrayList<Entity> targetList,EntityPriority priority) {
-    	if(targetList==null||targetList.isEmpty()) return null;
-        Entity entity = targetList.get(0);
-
-        switch (priority) {
-		case DISTANCE:
-			float distance = mc.player.getDistance(targetList.get(0));
-            for (int j = 0; j < targetList.size(); j++) {
-            	float currentDistance = mc.player.getDistance(targetList.get(j));
-                if (currentDistance < distance) {
-                    distance = currentDistance;
-                    entity = targetList.get(j);
-                }
-			}
-			break;
-		case HEALTH:
-			float health = ((EntityLivingBase)targetList.get(0)).getHealth();
-            for (int j = 0; j < targetList.size(); j++) {
-            	float currentHealth = ((EntityLivingBase)targetList.get(j)).getHealth();
-                if (currentHealth < health) {
-                    health = currentHealth;
-                    entity = targetList.get(j);
-                }
-			}
-			break;
-		default:
-			break;
-		}
-        return entity;
-    }
-
-    public static ArrayList<Entity> getTargetList(boolean[] player, boolean[] mobs, boolean ignoreWalls, boolean invisible, float range) {
-        if (mc.world==null||mc.world.loadedEntityList == null) return new ArrayList<Entity>();
-        ArrayList<Entity> entityList = new ArrayList<Entity>();
-        for (Entity entity : mc.world.loadedEntityList) {
-         
-            if (!isLiving(entity)) continue;
-            if (entity == mc.player) continue;
-            if (entity instanceof EntityPlayer) {
-                if (!player[0]) continue;
-                if (PlayerGroup.members.contains((((EntityPlayer) entity).getDisplayNameString()))) continue; 
-                if (PlayerFriends.friends.contains((((EntityPlayer) entity).getDisplayNameString()))) continue; 
-                if (PlayerFriends.impactFriends.contains((((EntityPlayer) entity).getDisplayNameString()))) continue; 
-                if (!player[2] && ((EntityLivingBase) entity).isPlayerSleeping()) continue;
-            } else if (!mobTypeSettings(entity, mobs[0], mobs[1], mobs[2], mobs[3])) continue;
-
-            if (mc.player.isRiding() && entity == mc.player.getRidingEntity()) continue; 
-            if (mc.player.getDistance(entity) > range) continue; 
-            if (((EntityLivingBase) entity).getHealth() <= 0) continue; 
-            if (!ignoreWalls && !mc.player.canEntityBeSeen(entity) && !canEntityFeetBeSeen(entity)) continue;  
-            if (!invisible && entity.isInvisible()) continue;
-            entityList.add(entity);
-        }
-        return entityList;
-    }
 
 
     boolean canEntityFeetBeSeen(Entity entityIn) {

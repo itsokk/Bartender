@@ -1,5 +1,6 @@
 package com.drunkshulker.bartender.client.commands;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.drunkshulker.bartender.util.Config;
@@ -81,7 +82,7 @@ public class BindHotkeyCommand implements ICommand {
 
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override

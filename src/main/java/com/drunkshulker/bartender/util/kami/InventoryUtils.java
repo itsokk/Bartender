@@ -11,8 +11,6 @@ import net.minecraft.inventory.ClickType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-
-
 public class InventoryUtils {
     private Minecraft mc = Minecraft.getMinecraft();
 
@@ -29,6 +27,7 @@ public class InventoryUtils {
         else return null;
     }
 
+
     public ArrayList<Integer> getSlotsHotbar(int itemId) {
         return getSlots(0, 8, itemId);
     }
@@ -37,6 +36,7 @@ public class InventoryUtils {
     public ArrayList<Integer> getSlotsNoHotbar(int itemId) {
         return getSlots(9, 35, itemId);
     }
+
 
     public ArrayList<Integer> getSlotsFullInv(int min, int max, int itemId) {
     	ArrayList<Integer> slots = new ArrayList<>();
@@ -76,14 +76,15 @@ public class InventoryUtils {
 
     public void swapSlot(int slot) {
         mc.player.inventory.currentItem = slot;
-     
+        
     }
+
 
     public void swapSlotToItem(int itemID) {
         if (getSlotsHotbar(itemID) != null) {
             swapSlot(getSlotsHotbar(itemID).get(0));
         }
-       
+        
     }
 
     private void inventoryClick(int slot, ClickType type) {
@@ -98,7 +99,7 @@ public class InventoryUtils {
         int slot1 = gsfinh.get(0);
         int slot2 = 36;
         for(int i = 36; i<44;i++) {
-     
+        
             ItemStack currentItemStack = mc.player.inventoryContainer.getInventory().get(i);
             if (currentItemStack.isEmpty()) {
                 slot2 = i;
@@ -124,21 +125,21 @@ public class InventoryUtils {
 	            try {
 					Thread.sleep(delayMillis);
 				} catch (InterruptedException e) {
-		
+					
 					e.printStackTrace();
 				}
 	            inventoryClick(slotFrom, ClickType.PICKUP);
 	            try {
 					Thread.sleep(delayMillis);
 				} catch (InterruptedException e) {
-			
+					
 					e.printStackTrace();
 				}
 	            inventoryClick(slotTo, ClickType.PICKUP);
 	            try {
 					Thread.sleep(delayMillis);
 				} catch (InterruptedException e) {
-				
+					
 					e.printStackTrace();
 				}
 	            inventoryClick(slotFrom, ClickType.PICKUP);
@@ -148,6 +149,7 @@ public class InventoryUtils {
 	    };
 	    thread.start();
     }
+
 
     public void moveAllToSlot(int slotFrom, int slotTo, long delayMillis) {
         if (inProgress) return;
@@ -159,14 +161,14 @@ public class InventoryUtils {
 	            try {
 					Thread.sleep(delayMillis);
 				} catch (InterruptedException e) {
-				
+					
 					e.printStackTrace();
 				}
 	            inventoryClick(slotTo, ClickType.PICKUP_ALL);
 	            try {
 					Thread.sleep(delayMillis);
 				} catch (InterruptedException e) {
-				
+					
 					e.printStackTrace();
 				}
 	            inventoryClick(slotTo, ClickType.PICKUP);
@@ -187,7 +189,7 @@ public class InventoryUtils {
 	            try {
 					Thread.sleep(delayMillis);
 				} catch (InterruptedException e) {
-				
+					
 					e.printStackTrace();
 				}
 	            inProgress = false;
@@ -205,14 +207,14 @@ public class InventoryUtils {
 	            try {
 					Thread.sleep(delayMillis);
 				} catch (InterruptedException e) {
-			k
+					
 					e.printStackTrace();
 				}
 	            inventoryClick(slotFrom, ClickType.QUICK_MOVE);
 	            try {
 					Thread.sleep(delayMillis);
 				} catch (InterruptedException e) {
-			
+					
 					e.printStackTrace();
 				}
 	            inProgress = false;
@@ -220,7 +222,9 @@ public class InventoryUtils {
 	    };
 	    thread.start();
     }
+    
 
+ 
     public void throwAllInSlot(int slot, long delayMillis) {
         if (inProgress) return;
 
@@ -231,7 +235,7 @@ public class InventoryUtils {
 	            try {
 					Thread.sleep(delayMillis);
 				} catch (InterruptedException e) {
-		
+					
 					e.printStackTrace();
 				}
 	            inProgress = false;
@@ -239,5 +243,5 @@ public class InventoryUtils {
 	    };
 	    thread.start();
     }
-   
+
 }

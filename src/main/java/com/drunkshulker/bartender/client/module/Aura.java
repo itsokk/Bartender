@@ -36,11 +36,13 @@ public class Aura {
 	public static float reach = 5.5f;
 	public static int lastHitTicks = 0;
 	public static long lastHitMillis = 0, rLastHitMillis = 0;
-
+	private static boolean hitCrystals = false;
 	static Random random = new Random();
+	private static boolean forceOff = false;
 
 	@SubscribeEvent
 	public void playerTick(TickEvent.PlayerTickEvent event){
+		if(forceOff) return;
 		if(SafeTotemSwap.taskInProgress) return;
 		if(AutoEat.enabled&&AutoEat.eating) return;
 		
@@ -60,6 +62,11 @@ public class Aura {
 		if(Bodyguard.enabled||!Bodyguard.currentEnemies.isEmpty()){
 			target = Bodyguard.getAuraTarget();
 		}
+		
+		if(target==null&&hitCrystals){
+			target = getCrystalToHit();
+		}
+
 		
 		if(target==null&&enabled) {
 			target = getTarget();
@@ -82,8 +89,31 @@ public class Aura {
 		
 	}
 
+	private Entity getCrystalToHit() {
+		ArrayList<Entity> crystals = EntityRadar.nearbyCrystals();
+		Entity player = Minecraft.getMinecraft().player;
+		if(player==null) return null;
+		
+		
+		double closestDistance = 999;
+		Entity closest = null;
+		for (Entity e:crystals) {
+			if(e==null) continue;
+			if(closest==null||closestDistance>e.getDistance(player)){
+				closestDistance = e.getDistance(player);
+				closest = e;
+			}
+		}
+		if(closest==null) return null;
+		if(closest.getDistance(player)<=4){
+			return closest;
+		}
+
+		return null;
+	}
+
 	public static Entity getTarget() {
-	
+
 		boolean[] player = new boolean[] {true, false, true};
 		boolean[] mob = new boolean[] {true, attackPassiveMobs, attackPassiveMobs, true};
 		
@@ -110,7 +140,20 @@ public class Aura {
 		for (ClickGuiSetting setting : contents) {
 			switch (setting.title) {
 			case "state":
-				enabled = setting.value == 1;
+
+				if(setting.value==0){
+					enabled = false;
+					forceOff = false;
+				}else if(setting.value==1){
+					enabled = true;
+					forceOff = false;
+				}else { 
+					enabled = false;
+					forceOff = true;
+				}
+				break;
+			case "hit crystals":
+				hitCrystals = setting.value == 1;
 				break;
 			case "D type":
 				if(setting.value == 0) delayType = DelayType.NONE;

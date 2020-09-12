@@ -113,34 +113,34 @@ public class ChatObserver {
 	public void onServerChatEvent(ClientChatReceivedEvent event){
 		String message = event.getMessage().getUnformattedText();
 		
-
+		
 		if(message.charAt(0) == '<') {
 			String sender = getMessageSender(message);
 			String text = getMessageText(sender, message);
 
-	
+			
 			if(allowLgbt) {
 				if(lgbt(message, sender, text)) return;
 			}
-		
+			
 			if(help) {
 				if(execHelp(message, sender, text)) return;
 			}
-	
+			
 			if(pornhub) {
 				pornSearch(message, sender);
 			}
 			return;
 		}
 		
-
+		
 		if(partyTPA) { 
 			partyTpaccept(message);
 			if(PlayerGroup.groupAcceptTpaHere) PlayerGroup.tpaccept(message);
 		}
 		else PlayerGroup.tpaccept(message);
 		
-	
+		
 		if(afkResponse) afk(message);
 	}
 	
@@ -157,13 +157,14 @@ public class ChatObserver {
 	}
 
 	private String getMessageSender(String message) {
-	
+		
 		String sender = "";
 		for (int i = 1; i < message.length(); i++){
 		    char c = message.charAt(i);        
 		    if(c=='>') break;
 		    else sender+=c;
 		}
+
 		return sender;
 	}
 	
@@ -184,7 +185,9 @@ public class ChatObserver {
 		if(message.indexOf(commandPrefix+"sex")==(sender.length()+3)) {
 
 			final String senderf = sender;	
-	
+			
+			
+			
 			if(lastPornhubSearch>0L&&System.currentTimeMillis()-lastPornhubSearch<15000) {
 				String messageText = "> You have to wait 15 seconds before executing "+commandPrefix+"sex again";
 				safeSendPublicChatMessage(messageText);
@@ -215,6 +218,7 @@ public class ChatObserver {
 	    				}
 	    				in.close();
 	    				
+	    				
 	    				String r = "> "+senderf+"'s PornHub search: "+ response.substring(response.indexOf("<title>") + 7, response.indexOf("</title>"));
 						r = r.replaceAll("[^A-Za-z0-9()'!?:.,_> \\[\\]]", "");
 	    				safeSendPublicChatMessage(r.substring(0, r.length()-13));
@@ -229,7 +233,7 @@ public class ChatObserver {
 	}
 	
 	private void partyTpaccept(String message) {
-	
+		
 		String toYou = "has requested to teleport to you.";
 		if(message.contains(toYou)) {
 			Minecraft.getMinecraft().player.sendChatMessage("/tpaccept");		
@@ -239,9 +243,11 @@ public class ChatObserver {
 	private boolean lgbt(String message, String sender, String msgOnly) {
 		if(lastLgbt>0L&&System.currentTimeMillis()-lastLgbt<2000) return false; 
 		if(message.length()>50) return false; 
-
+		
+		
 		if(message.indexOf(commandPrefix+"gender")==(sender.length()+3)) {
-
+			
+			
 			if(msgOnly.length()>8&&msgOnly.length()<=25) {
 				String subs = msgOnly.substring(8);
 				if(subs.length()>2) {
@@ -268,13 +274,14 @@ public class ChatObserver {
 		String m = "Im currently afk";
 		if(!message.contains(" whispers:") ||message.contains(m)) return;
 		Minecraft mc = Minecraft.getMinecraft();
-		if(mc.isGamePaused()) return;
+		if(mc.isGamePaused()) return; 
+		
 		for (String member : PlayerGroup.members) {
 			String predicate = member+" whispers:";
 			if(message.length()<predicate.length()) return;
 			if(message.startsWith(predicate)) return;
 		}
-
+		
 		mc.player.sendChatMessage("/r "+m);
 	}
 
@@ -288,7 +295,7 @@ public class ChatObserver {
 	
 	@SubscribeEvent
 	public void onClientChatEvent(ClientChatEvent event){
-	
+		
 		if(mooCheck) {
 			if(event.getMessage().charAt(0)=='!') {
 				if(!PlayerGroup.isPlayerOnline("moooomoooo")) {
@@ -299,7 +306,7 @@ public class ChatObserver {
 			}
 		}
 
-	
+		
 		if(chatFix) {
 			if(messageIsCommand(event.getMessage())) return;
 			if(Config.CHAT_POST_FIX.equals("")) return;

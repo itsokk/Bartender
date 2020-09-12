@@ -13,16 +13,19 @@ import java.util.Map;
 @IFMLLoadingPlugin.MCVersion("1.12.2")
 public class MixinLoaderForge implements IFMLLoadingPlugin {
 
-
+ 
     public static final Logger log = LogManager.getLogger("Bartender");
     private static boolean isObfuscatedEnvironment = false;
 
     public MixinLoaderForge() {
+        
 
         MixinBootstrap.init();
 
         Mixins.addConfigurations("mixins.bartender.json", "mixins.baritone.json");
         MixinEnvironment.getDefaultEnvironment().setObfuscationContext("searge");
+
+        
 
         log.info(MixinEnvironment.getDefaultEnvironment().getObfuscationContext());
     }

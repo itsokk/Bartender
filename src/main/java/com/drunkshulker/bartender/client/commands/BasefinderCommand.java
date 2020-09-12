@@ -2,6 +2,7 @@ package com.drunkshulker.bartender.client.commands;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -70,7 +71,7 @@ public class BasefinderCommand implements ICommand {
 
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override

@@ -13,7 +13,8 @@ import net.minecraft.util.text.TextComponentKeybind;
 public class PlayerFriends {
 	public static ArrayList<String> impactFriends = new ArrayList<String>();
 	public static ArrayList<String> friends = new ArrayList<String>();
-
+	
+	
 	public static void save() {
 		Config.save();
 	}

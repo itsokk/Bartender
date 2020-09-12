@@ -19,6 +19,7 @@ public class ModulesRegistry {
 	public static void registerAll(){	
 		MinecraftForge.EVENT_BUS.register(new Update());
 		MinecraftForge.EVENT_BUS.register(new SafeTotemSwap());
+		
         MinecraftForge.EVENT_BUS.register(new Search());
         MinecraftForge.EVENT_BUS.register(new Aura());
         MinecraftForge.EVENT_BUS.register(new PlayerParticles());

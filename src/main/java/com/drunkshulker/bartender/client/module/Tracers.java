@@ -37,7 +37,7 @@ public class Tracers {
 				.rotatePitch((float) -Math.toRadians(mc.player.rotationPitch)).rotateYaw((float)-Math
 						.toRadians(mc.player.rotationYaw)).add(pos1);
 
-		if (mc.gameSettings.viewBobbing) {
+
 			double yawRad = Math.toRadians(mc.player.rotationYaw);
 			double pitchRad = Math.toRadians(mc.player.rotationPitch);
 			double distance = -(mc.player.distanceWalkedModified + (mc.player.distanceWalkedModified - mc.player.prevDistanceWalkedModified) * pTicks());
@@ -74,6 +74,9 @@ public class Tracers {
 		
 
 
+
+
+		
 
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glPopAttrib();

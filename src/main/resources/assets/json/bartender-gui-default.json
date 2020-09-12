@@ -714,12 +714,26 @@
 					"value": 0,
 					"values": [
 						"AUTO",
-						"ON"
+						"ON",
+						"OFF"
 					],
 					"desc": [
-						"AUTO/ON",
 						"AUTO=CONTROLLED BY BODYGUARD ENEMY LIST",
-						"ON=HIT ANY ENTITY EXCEPT GROUP MEMBERS AND FRIENDS"
+						"ON=HIT ANY ENTITY EXCEPT GROUP MEMBERS AND FRIENDS",
+						"OFF=ALWAYS OFF"
+					]
+				},
+				{
+					"title": "hit crystals",
+					"type": "text",
+					"value": 0,
+					"values": [
+						"NO",
+						"YES"
+					],
+					"desc": [
+						"TURN ON TO HIT END CRYSTALS IN RANGE",
+						"IF YOU ENABLE THIS, AURA ONLY ATTACKS PLAYERS MARKED AS HOSTILE"
 					]
 				},
 				{
@@ -779,14 +793,25 @@
 				{
 					"title": "D millis",
 					"type": "text",
-					"value": 4,
+					"value": 7,
 					"values": [
 						"20",
 						"30",
 						"50",
 						"75",
+						"85",
+						"90",
+						"95",
 						"100",
+						"110",
+						"120",
+						"130",
+						"140",
 						"150",
+						"160",
+						"170",
+						"180",
+						"190",
 						"200",
 						"250",
 						"300",
@@ -954,6 +979,7 @@
 					],
 					"closeOnClick": true
 				}
+
 			]
 		},
 		{
@@ -1035,7 +1061,17 @@
 					"values": [
 						"200",
 						"500",
+						"700",
+						"800",
+						"900",
 						"1000",
+						"1100",
+						"1200",
+						"1300",
+						"1400",
+						"1500",
+						"1600",
+						"1700",
 						"2000"
 					],
 					"desc": [
@@ -1410,9 +1446,16 @@
 				{
 					"title": "flight level",
 					"type": "text",
-					"value": 2,
+					"value": 9,
 					"values": [
 						"100",
+						"130",
+						"140",
+						"150",
+						"160",
+						"170",
+						"180",
+						"190",
 						"200",
 						"210",
 						"257",

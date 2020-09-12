@@ -8,6 +8,7 @@ import com.drunkshulker.bartender.client.social.PlayerGroup;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class EntityRadar {
@@ -27,7 +28,20 @@ public class EntityRadar {
 		Collections.sort(a);
 		return a;
 	}
-	
+
+	public static ArrayList<Entity> nearbyCrystals(){
+		ArrayList<Entity> a = new ArrayList<>();
+		if(Minecraft.getMinecraft().player==null) return a;
+		if(Minecraft.getMinecraft().world==null) return a;
+		for (Entity e : Minecraft.getMinecraft().world.loadedEntityList) {
+			if (e == null) continue;
+			if(e instanceof EntityEnderCrystal) {
+				a.add(e);
+			}
+		}
+		return a;
+	}
+
 	public static ArrayList<String> nearbyGroupMembers(){
 		ArrayList<String> a = nearbyPlayers();
 		

@@ -101,7 +101,7 @@ public class AutoEat {
         if (!SafeTotemSwap.enabled &&isValid(mc.player.getHeldItemOffhand(), stats.getFoodLevel())) {
             mc.player.setActiveHand(EnumHand.OFF_HAND);
 
-           
+
 
             eating = true;
             BaritoneAPI.getSettings().allowInventory.value = true;
@@ -109,7 +109,7 @@ public class AutoEat {
             KeyBinding.setKeyBindState(mc.gameSettings.keyBindUseItem.getKeyCode(), true);
             mc.playerController.processRightClick(mc.player, mc.world, EnumHand.OFF_HAND);
         } else {
-           
+
             if(eatChorus){
                 if(Minecraft.getMinecraft().player.inventory.getStackInSlot(chorusSlot).isEmpty
                         ||Minecraft.getMinecraft().player.inventory.getStackInSlot(chorusSlot).getItem()!=Items.CHORUS_FRUIT
@@ -121,7 +121,7 @@ public class AutoEat {
                 lastSlot = mc.player.inventory.currentItem;
                 mc.player.inventory.currentItem = chorusSlot;
 
-                
+
 
                 eating = true;
                 KeyBinding.setKeyBindState(mc.gameSettings.keyBindUseItem.getKeyCode(), true);
@@ -134,7 +134,7 @@ public class AutoEat {
                         lastSlot = mc.player.inventory.currentItem;
                         mc.player.inventory.currentItem = i;
 
-                        
+
 
                         eating = true;
                         KeyBinding.setKeyBindState(mc.gameSettings.keyBindUseItem.getKeyCode(), true);
@@ -149,7 +149,7 @@ public class AutoEat {
                          lastSlot = mc.player.inventory.currentItem;
                          mc.player.inventory.currentItem = i;
 
-                        
+
 
                          eating = true;
                          KeyBinding.setKeyBindState(mc.gameSettings.keyBindUseItem.getKeyCode(), true);
@@ -167,7 +167,7 @@ public class AutoEat {
         return (item == Items.GOLDEN_APPLE)&&item.hasEffect(stackInSlot);
     }
 
-   
+
 
 	public static void applyPreferences(ClickGuiSetting[] contents) {
 		for (ClickGuiSetting setting : contents) {

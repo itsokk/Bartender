@@ -115,11 +115,8 @@ public class BaseFinder {
 			
 			ArrayList<String> ps = EntityRadar.nearbyPlayersNoGroup();
 			if(disconnectOnMeetPlayer&&(!ps.isEmpty())) {
-				logOut(ps.toString());
-			} 
-			
-			else if(!ps.isEmpty()) {
 				writeToLog("encounter | "+ ps.toString());
+				logOut(ps.toString());
 			}
 
 			
